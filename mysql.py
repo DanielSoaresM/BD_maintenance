@@ -38,11 +38,11 @@ class DBase:
 
     def runQuery(self, query='', args=None , mogry=None): 
         # mogry = True muestra la query a insertar
+        if mogry == True:
+            print(self.cursor.mogrify(query, args))
         if not args:
             self.cursor.execute(query)
         else:
-            if mogry == True:
-                print(self.cursor.mogrify(query, args))
             self.cursor.execute(query, args)
         if query.upper().startswith('SELECT') or query.upper().startswith('CALL GET'):
             # Solo para las consultas SELECT o llamadas a procedures CALL
